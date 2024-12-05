@@ -10,13 +10,6 @@ app.listen(PORT, () => {
 });
 
 let sampleGreetings = {
-    diabetes: {
-        foodAllowed: {
-            rice: {
-                amount: '2 cups'
-            }
-        }
-    },
     mindoro: "Magandang hapon",
     cebu: "Maayong hapon",
     ilocos: "Naimbag nga malem",
@@ -32,27 +25,45 @@ app.get('/', function(request, response) {
 app.get('/greetings', function(request, response) {
     const parameters = request.query;
 
-    //check for the required and optional parameters: location and dialect
-    const location = parameters?.location;
-    const dialect = parameters?.dialect;
-    const defaultGreeting = parameters?.default;
-
-    if (!location) {
-        //return english greeting
-        response.send(sampleGreetings.english);
+    switch (parameters?.location) {
+        case 'mindoro':
+            response.send(sampleGreetings.mindoro);
+            break;
+        case 'cebu':
+            response.send(sampleGreetings.cebu);
+            break;
+        case 'ilocos':
+            response.send(sampleGreetings.ilocos);
+            break;
+        case 'bicol':
+            response.send(sampleGreetings.bicol);
+            break;
+        default:
+            response.send(sampleGreetings.english);
+            break;
     }
 
-    if (!dialect) {
-        //process based on location
-        switch (key) {
-            case value:
+    // //check for the required and optional parameters: location and dialect
+    // const location = parameters?.location;
+    // const dialect = parameters?.dialect;
+    // const defaultGreeting = parameters?.default;
+
+    // if (!location) {
+    //     //return english greeting
+    //     response.send(sampleGreetings.english);
+    // }
+
+    // if (!dialect) {
+    //     //process based on location
+    //     switch (key) {
+    //         case value:
                 
-                break;
+    //             break;
         
-            default:
-                break;
-        }
-    }
+    //         default:
+    //             break;
+    //     }
+    // }
 
 
     //process based on location and dialect
