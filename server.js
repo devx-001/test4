@@ -39,7 +39,7 @@ app.get('/greetings', function(request, response) {
             response.send(sampleGreetings.bicol);
             break;
         default:
-            response.send(paramaters.default);
+            response.send(parameters.default);
             break;
     }
 
